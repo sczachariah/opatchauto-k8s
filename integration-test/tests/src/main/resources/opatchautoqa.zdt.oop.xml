@@ -1,0 +1,22 @@
+<!--Run mats only-->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="OPATCHAUTOQA_ZDT_OOP_Test" verbose="1">
+
+    <test name="OPATCHAUTOQA_ZDT_OOP">
+        <classes>
+            <class name="oracle.fmwplatformqa.opatchautoqa.zdt.integrationTests.oop.OPatchAutoOOPTest">
+                <methods>
+                    <include name="testOOPApplyBinaryPatching"/>
+                    <include name="testOOPRemoteHostBinaryPatching"/>
+                    <include name="testOOPRemoteHostBinaryPatchingOnTargetOH"/>
+                    <include name="testOOPCreateImage"/>
+                    <include name="testOOPCreateImageMultiplePatches"/>
+                    <include name="testOOPCreateImageOnRemoteHostTargetOH"/>
+                    <include name="testOOPCreateImageInPlace"/>
+                    <include name="testOOPApplyImageInPlace"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

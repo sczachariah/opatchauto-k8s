@@ -1,0 +1,40 @@
+<!--Run opatchauto-fmw-qa customAction tests-->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="OPATCHAUTOQA_FMW_CustomAction_Test" verbose="1">
+
+    <test name="OPATCHAUTOQA_FMW_CustomAction">
+        <parameter name="applyPatchOperation" value="APPLY"/>
+        <parameter name="rollbackPatchOperation" value="ROLLBACK_CUMULATIVE"/>
+        <classes>
+            <class name="oracle.fmwplatformqa.opatchautoqa.fmw.integrationTests.OPatchAutoFMWCustomActionTest">
+                <methods>
+                    <include name="testNegative"/>
+                    <include name="testDomain_Registry"/>
+                    <!--<include name="testDomain_Extension_Template"/>-->
+                    <include name="testStandard_Action_Hello_World"/>
+                    <include name="testSchema_Version_Registry"/>
+                    <include name="testOffline"/>
+                    <!--<include name="testOnline"/>-->
+                    <include name="testDuplicate_Inventory"/>
+                    <include name="testOrderType_First_Default_Last"/>
+                    <include name="testFailureMode_Warn_Continue_Stop"/>
+                    <include name="testPreReq_NotIn_Inventory"/>
+                    <include name="testPreReq_In_Inventory"/>
+                    <include name="testPreReq_Self_Referencing"/>
+                    <include name="testPreReq_Circular"/>
+                    <include name="testDeduplication_Different_Name"/>
+                    <include name="testDeduplication_Different_Type"/>
+                    <include name="testDeduplication_Different_Order"/>
+                    <include name="testDeduplication_Different_Parameter"/>
+                    <include name="testNo_Deduplication_Different_Key"/>
+                    <include name="testDeduplication"/>
+                    <include name="testDeduplication_Failure_Mode1"/>
+                    <include name="testDeduplication_Failure_Mode2"/>
+                    <include name="testNo_Custom_Action"/>
+                    <include name="testPostPatch_Create_Domain"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

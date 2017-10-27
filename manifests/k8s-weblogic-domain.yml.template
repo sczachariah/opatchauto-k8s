@@ -1,0 +1,92 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: wlsadmin
+  labels:
+    app: wlsadmin
+    commit: ${WERCKER_GIT_COMMIT}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wlsadmin
+      commit: ${WERCKER_GIT_COMMIT}
+  template:
+    metadata:
+      labels:
+        app: wlsadmin
+        commit: ${WERCKER_GIT_COMMIT}
+    spec:
+      containers:
+      - name: wlsadmin
+        imagePullPolicy: IfNotPresent
+        image: gcr.io/fmwplt-gcp/12213-domain-novol:${WERCKER_GIT_COMMIT}
+        ports:
+        - containerPort: 7001
+        args:
+          - --name=wlsadmin
+          - --hostname=wlsadmin
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: MS1
+  labels:
+    app: MS1
+    commit: ${WERCKER_GIT_COMMIT}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: MS1
+      commit: ${WERCKER_GIT_COMMIT}
+  template:
+    metadata:
+      labels:
+        app: MS1
+        commit: ${WERCKER_GIT_COMMIT}
+    spec:
+      containers:
+      - name: wlsadmin
+        imagePullPolicy: IfNotPresent
+        image: gcr.io/fmwplt-gcp/12213-domain-novol:${WERCKER_GIT_COMMIT}
+        ports:
+        - containerPort: 8001
+        command: ["createServer.sh"]
+        args:
+          - --name=MS1
+          - --link wlsadmin:wlsadmin
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: MS2
+  labels:
+    app: MS2
+    commit: ${WERCKER_GIT_COMMIT}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: MS2
+      commit: ${WERCKER_GIT_COMMIT}
+  template:
+    metadata:
+      labels:
+        app: MS2
+        commit: ${WERCKER_GIT_COMMIT}
+    spec:
+      containers:
+      - name: wlsadmin
+        imagePullPolicy: IfNotPresent
+        image: gcr.io/fmwplt-gcp/12213-domain-novol:${WERCKER_GIT_COMMIT}
+        ports:
+        - containerPort: 8001
+        command: ["createServer.sh"]
+        args:
+          - --name=MS2
+          - --link wlsadmin:wlsadmin
+---
+---
+---

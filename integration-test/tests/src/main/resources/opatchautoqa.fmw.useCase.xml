@@ -1,0 +1,18 @@
+<!--Run opatchauto-fmw-qa useCase tests-->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="OPATCHAUTOQA_FMW_UseCase_Test" verbose="1">
+
+    <test name="OPATCHAUTOQA_FMW_UseCase">
+        <parameter name="applyPatchOperation" value="APPLY"/>
+        <parameter name="rollbackPatchOperation" value="ROLLBACK_CUMULATIVE"/>
+        <classes>
+            <class name="oracle.fmwplatformqa.opatchautoqa.fmw.integrationTests.OPatchAutoFMWUseCaseTest">
+                <methods>
+                    <include name="testCustomAction1"/>
+                    <include name="testCustomAction2"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

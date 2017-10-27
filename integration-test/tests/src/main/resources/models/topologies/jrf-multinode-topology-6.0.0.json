@@ -1,0 +1,209 @@
+{
+  "schemaVersion": "6.0.0",
+  "name": "jrf-multinode-topology",
+  "version": "6.0.0",
+  "fmwVersionRange": "[12.2.1,)",
+  "hosts": [
+    {
+      "id": "machine1",
+      "address": "%SERVER_HOST%",
+      "mappedOracleHomes": [
+        {
+          "oracleHomeRef": "jrf-12.2.1.3.0",
+          "mappedDomains": [
+            {
+              "domainRef": "jrf",
+              "nodeManagerRef": "machine1-nm",
+              "mappedServers": [
+                {
+                  "id": "AdminServer",
+                  "serverBindingRef": "AdminServer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "machine2",
+      "address": "%SERVER1_HOST%",
+      "mappedOracleHomes": [
+        {
+          "oracleHomeRef": "jrf-12.2.1.3.0",
+          "mappedDomains": [
+            {
+              "domainRef": "jrf",
+              "nodeManagerRef": "machine2-nm",
+              "mappedServers": [
+                {
+                  "id": "jrf_server1",
+                  "serverBindingRef": "jrf_server1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "machine3",
+      "address": "%SERVER2_HOST%",
+      "mappedOracleHomes": [
+        {
+          "oracleHomeRef": "jrf-12.2.1.3.0",
+          "mappedDomains": [
+            {
+              "domainRef": "jrf",
+              "nodeManagerRef": "machine3-nm",
+              "mappedServers": [
+                {
+                  "id": "jrf_server2",
+                  "serverBindingRef": "jrf_server2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "oracleHomes": [
+    {
+      "id": "jrf-12.2.1.3.0",
+      "path": "/homes/jrf-12.2.1.3.0",
+      "type": "local",
+      "javaHome": "/homes/jdk",
+      "inventoryLocation": "/homes/oraInventory",
+      "installationData": {
+        "installations": [
+          {
+            "id": "infra",
+            "installer": "/installers/fmw_12.2.1.3.0_infrastructure_generic.jar",
+            "installType": "Fusion Middleware Infrastructure"
+          }
+        ]
+      }
+    }
+  ],
+  "nodeManagers": [
+    {
+      "id": "machine1-nm",
+      "name": "machine1-nm",
+      "credentialRef": "WLS/NODE",
+      "address": "%SERVER_HOST%"
+    },
+    {
+      "id": "machine2-nm",
+      "name": "machine2-nm",
+      "credentialRef": "WLS/NODE",
+      "address": "%SERVER1_HOST%"
+    },
+    {
+      "id": "machine3-nm",
+      "name": "machine3-nm",
+      "credentialRef": "WLS/NODE",
+      "address": "%SERVER2_HOST%"
+    }
+  ],
+  "domains": [
+    {
+      "id": "jrf",
+      "name": "jrf",
+      "path": "/domains/jrf",
+      "type": "local",
+      "adminCredentialRef": "WLS/ADMIN",
+      "adminServerUrl": "t3://%SERVER_HOST%:7001",
+      "tuningParameters": {
+        "settings": [
+          {
+            "alias": "ProductionModeEnabled",
+            "value": "true"
+          }
+        ]
+      },
+      "domainProfile": {
+        "servers": [
+          {
+            "id": "AdminServer",
+            "isAdminServer": true
+          },
+          {
+            "id": "jrf_server1"
+          },
+          {
+            "id": "jrf_server2"
+          }
+        ],
+        "clusters": [
+          {
+            "id": "jrf_cluster1",
+            "members": [
+              "jrf_server1",
+              "jrf_server2"
+            ]
+          }
+        ],
+        "migratableTargets": [
+          {
+            "id": "jrf_server1 (migratable)"
+          },
+          {
+            "id": "jrf_server2 (migratable)"
+          }
+        ],
+        "blueprintRefs": [
+          {
+            "name": "standard-weblogic-blueprint",
+            "version": "1.0"
+          }
+        ]
+      },
+      "serverBindings": [
+        {
+          "id": "AdminServer",
+          "serverRef": "AdminServer",
+          "name": "AdminServer",
+          "listenAddress": "%SERVER_HOST%",
+          "listenPort": "7001"
+        },
+        {
+          "id": "jrf_server1",
+          "serverRef": "jrf_server1",
+          "name": "jrf_server1",
+          "listenAddress": "%SERVER1_HOST%",
+          "listenPort": "7003"
+        },
+        {
+          "id": "jrf_server2",
+          "serverRef": "jrf_server2",
+          "name": "jrf_server2",
+          "listenAddress": "%SERVER2_HOST%",
+          "listenPort": "7005"
+        }
+      ],
+      "clusterBindings": [
+        {
+          "clusterRef": "jrf_cluster1",
+          "name": "jrf_cluster1"
+        }
+      ],
+      "migratableTargetBindings": [
+        {
+          "id": "jrf_server1 (migratable)",
+          "clusterRef": "jrf_cluster1",
+          "name": "jrf_server1 (migratable)",
+          "migratableTargetRef": "jrf_server1 (migratable)",
+          "userPreferredServerRef": "jrf_server1"
+        },
+        {
+          "id": "jrf_server2 (migratable)",
+          "clusterRef": "jrf_cluster1",
+          "name": "jrf_server2 (migratable)",
+          "migratableTargetRef": "jrf_server2 (migratable)",
+          "userPreferredServerRef": "jrf_server2"
+        }
+      ]
+    }
+  ]
+}

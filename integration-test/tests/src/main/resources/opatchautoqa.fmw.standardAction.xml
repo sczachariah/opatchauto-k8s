@@ -1,0 +1,21 @@
+<!--Run opatchauto-fmw-qa standardAction tests-->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="OPATCHAUTOQA_FMW_StandardAction_Test" verbose="1">
+
+    <test name="OPATCHAUTOQA_FMW_StandardAction">
+        <parameter name="applyPatchOperation" value="APPLY"/>
+        <parameter name="rollbackPatchOperation" value="ROLLBACK_CUMULATIVE"/>
+        <classes>
+            <class name="oracle.fmwplatformqa.opatchautoqa.fmw.integrationTests.OPatchAutoFMWStandardActionTest">
+                <methods>
+                    <!--<include name="testCreateDomain"/>-->
+                    <!--<include name="testApplyTemplate"/>-->
+                    <include name="testEchoVersion"/>
+                    <include name="testStartServers"/>
+                    <include name="testStopServers"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

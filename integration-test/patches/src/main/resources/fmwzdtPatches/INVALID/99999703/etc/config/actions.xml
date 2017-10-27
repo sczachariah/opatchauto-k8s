@@ -1,0 +1,5 @@
+<oneoff_actions>
+    <oracle.fmwplatform.ocp version="${weblogic.version}" opt_req="R">
+        <copy name="PatchMarker_99999703.txt" path="%ORACLE_HOME%/" file_name="PatchMarker_99999703.txt"/>
+    </oracle.fmwplatform.ocp>
+</oneoff_actions>

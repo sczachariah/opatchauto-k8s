@@ -1,0 +1,45 @@
+<!--Run mats only-->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="OPATCHAUTOQA_ZDT_WLSZDT_Test" verbose="1">
+
+    <test name="OPATCHAUTOQA_ZDT_WLSZDT">
+        <classes>
+            <class name="oracle.fmwplatformqa.opatchautoqa.zdt.integrationTests.wlszdt.OPatchAutoWLSZDTTest">
+                <methods>
+                    <!--<include name="testZDTCommands"/>-->
+                    <include name="setupTestEnv"/>
+
+                    <include name="testCreateImageOOP"/>
+                    <include name="testPushImageTargetCluster"/>
+
+                    <include name="testRolloutTargetAdminServer"/>
+                    <include name="testRolloutTargetManagedServer"/>
+                    <include name="testRolloutTargetCluster"/>
+                    <include name="testRollbackSuccessRollout"/>
+
+                    <include name="testRolloutTargetListOfServers"/>
+                    <include name="testRolloutTargetDomain"/>
+
+                    <include name="testRollbackFailedRollout"/>
+
+                    <include name="testResumeFailedRolloutTargetManagedServer"/>
+                    <include name="testResumeFailedRolloutTargetCluster"/>
+                    <include name="testResumeFailedRolloutTargetDomain"/>
+
+                    <include name="testRolloutInvalidTarget"/>
+                    <include name="testRolloutDifferentTarget"/>
+                    <include name="testRolloutInvalidImageLocation"/>
+                    <include name="testRolloutInvalidWalletLocation"/>
+                    <include name="testRolloutInvalidWalletPassword"/>
+                    <include name="testRolloutInvalidAdminHostname"/>
+                    <include name="testRolloutInvalidAdminPort"/>
+                    <include name="testResumeInvalidSessionID"/>
+                    <include name="testInvalidPlan"/>
+
+                    <include name="testZDTOptions"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

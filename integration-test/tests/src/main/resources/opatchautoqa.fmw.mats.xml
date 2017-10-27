@@ -1,0 +1,52 @@
+<!--Run all opatchautoqa fmw mats tests-->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="OPATCHAUTOQA_FMW_MATS_Test" verbose="1">
+
+    <test name="OPATCHAUTOQA_FMW_Rolling">
+        <classes>
+            <class name="oracle.fmwplatformqa.opatchautoqa.zdt.integrationTests.fmwzdt.OPatchAutoFMWZDTTest">
+                <methods>
+                    <include name="testAnalyze"/>
+                    <include name="testMNTUptimeRollingOH"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="OPATCHAUTOQA_FMW_Generic">
+        <parameter name="applyPatchOperation" value="APPLY"/>
+        <parameter name="rollbackPatchOperation" value="ROLLBACK"/>
+        <classes>
+            <class name="oracle.fmwplatformqa.opatchautoqa.fmw.integrationTests.OPatchAutoFMWGenericTest">
+                <methods>
+                    <include name="testInstall"/>
+                    <include name="testExecutable"/>
+                    <include name="testApply_BinaryPatching"/>
+                    <include name="testProductPatching"/>
+                    <include name="testFinalize"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="OPATCHAUTOQA_FMW_CustomAction">
+        <parameter name="applyPatchOperation" value="APPLY"/>
+        <parameter name="rollbackPatchOperation" value="ROLLBACK_CUMULATIVE"/>
+        <classes>
+            <class name="oracle.fmwplatformqa.opatchautoqa.fmw.integrationTests.OPatchAutoFMWCustomActionTest">
+                <methods>
+                    <include name="testDuplicate_Inventory"/>
+                    <include name="testOrderType_First_Default_Last"/>
+                    <include name="testFailureMode_Warn_Continue_Stop"/>
+                    <include name="testDeduplication_Different_Name"/>
+                    <include name="testDeduplication_Different_Type"/>
+                    <include name="testDeduplication_Different_Order"/>
+                    <include name="testDeduplication_Different_Parameter"/>
+                    <include name="testNo_Deduplication_Different_Key"/>
+                    <include name="testDeduplication"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,43 @@
+<!--Run mats only-->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="OPATCHAUTOQA_ZDT_FMWZDT_Test" verbose="1">
+
+    <test name="OPATCHAUTOQA_ZDT_FMWZDT">
+        <classes>
+            <class name="oracle.fmwplatformqa.opatchautoqa.zdt.integrationTests.fmwzdt.OPatchAutoFMWZDTTest">
+                <methods>
+                    <include name="testEnvSetup"/>
+                    <include name="testPatchdeploy"/>
+                    <include name="testPatchUptimeOption"/>
+                    <include name="testAnalyze"/>
+                    <include name="testPatchUptimeEmpty"/>
+                    <include name="testPatchUptimeNone"/>
+                    <include name="testPatchUptimeRollingSession"/>
+                    <include name="testPatchUptimeRollingOracleHome"/>
+                    <include name="testPatchUptimeOnline"/>
+                    <include name="testPatchUptimeInvalid"/>
+                    <include name="testPatchUptimeMultiPatch"/>
+                    <include name="test_WNWM_UptimeAny"/>
+                    <include name="test_WNNM_UptimeAny"/>
+                    <include name="test_NNWM_UptimeAny"/>
+                    <include name="test_NNNM_UptimeAny"/>
+                    <include name="testMN_NNNM_UptimeRollingOH"/>
+                    <include name="testMNUptimeNoneRolling"/>
+                    <include name="testMNUptimeNoneParallel"/>
+                    <include name="testMNTUptimeRollingParallel"/>
+                    <include name="testMNTUptimeRollingOH"/>
+                    <include name="testMNTUptimeRollingOHParallel"/>
+                    <include name="testMNUptimeMultiPatchRolling"/>
+                    <include name="testMNUptimeMultiPatchParallel"/>
+                    <include name="testMNTUptimeRollingOHOOP"/>
+                    <include name="testMNHostOrderChange"/>
+                    <include name="testSNDifferentServerState"/>
+                    <include name="testMNDifferentServerState"/>
+                    <include name="testMNOnlineDiscoveryRemoteHost"/>
+                    <include name="testMNOnlineDiscoveryRemoteHostAdminShutdown"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,105 @@
+<jacoco-config>
+    <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.7.4.201502262128</version>
+        <executions>
+            <!--
+            Prepares the property pointing to the JaCoCo runtime agent which
+            is passed as VM argument to Maven whne the Failsafe plugin is executed.
+            -->
+            <execution>
+                <id>pre-integration-test</id>
+                <phase>pre-integration-test</phase>
+                <goals>
+                    <goal>prepare-agent-integration</goal>
+                </goals>
+                <configuration>
+                    <!-- Sets the path to the file which contains the execution data. -->
+                    <destFile>${project.build.directory}/coverage-reports/jacoco-it-opatchauto.exec</destFile>
+                    <!--
+                    Sets the name of the property containing the settings
+                    for JaCoCo runtime agent.
+                    -->
+                    <propertyName>failsafeArgLine</propertyName>
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
+
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.7</version>
+        <dependencies>
+            <dependency>
+                <groupId>org.jacoco</groupId>
+                <artifactId>org.jacoco.ant</artifactId>
+                <version>0.7.4.201502262128</version>
+            </dependency>
+            <dependency>
+                <groupId>ant-contrib</groupId>
+                <artifactId>ant-contrib</artifactId>
+                <version>20020829</version>
+            </dependency>
+        </dependencies>
+        <executions>
+            <execution>
+                <id>jacoco-report</id>
+                <phase>post-integration-test</phase>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+                <configuration>
+                    <target>
+                        <taskdef name="jacoco-report"
+                                 classname="org.jacoco.ant.ReportTask"
+                                 classpathref="maven.plugin.classpath"/>
+                        <taskdef classpathref="maven.runtime.classpath"
+                                 resource="net/sf/antcontrib/antcontrib.properties"/>
+                        <available
+                                file="${project.build.directory}/coverage-reports/jacoco-it-opatchauto.exec"
+                                property="jacoco.exec.file.exists"/>
+                        <echo message="${project.build.directory}/coverage-reports/jacoco-it-opatchauto.exec"/>
+                        <if>
+                            <equals arg1="${jacoco.exec.file.exists}"
+                                    arg2="true"/>
+                            <then>
+                                <echo message="Executing jacoco report"/>
+                                <jacoco-report>
+                                    <executiondata>
+                                        <file file="${project.build.directory}/coverage-reports/jacoco-it-opatchauto.exec"/>
+                                    </executiondata>
+                                    <structure name="opatchauto-qa-jacoco">
+                                        <classfiles>
+                                            <!-- Include this folder to generate report on qa classes -->
+                                            <!--<fileset dir="${project.build.directory}/classes"/>-->
+                                            <fileset dir="${oracle.home}/OPatch/auto/core/modules/">
+                                                <!--<include name="actionframework*.jar"/>-->
+                                                <!--<include name="envspec*.jar"/>-->
+                                                <!--<include name="credentials*.jar"/>-->
+                                                <!--<include name="fmwprov*.jar"/>-->
+                                                <include name="com.oracle.glcm.patch.opatchauto_13.9.0.0.jar"/>
+                                                <include name="com.oracle.glcm.patch.opatchauto-actions_13.9.0.0.jar"/>
+                                            </fileset>
+                                        </classfiles>
+                                        <!--<sourcefiles encoding="UTF-8">-->
+                                        <!--<fileset dir="src/main/java"/>-->
+                                        <!--</sourcefiles>-->
+                                    </structure>
+                                    <html destdir="${project.build.directory}/site"/>
+                                    <xml destfile="${project.build.directory}/coverage-reports/jacoco-it-opatchauto.xml"/>
+                                </jacoco-report>
+                            </then>
+                            <else>
+                                <echo message="No jacoco.exec file found."/>
+                            </else>
+                        </if>
+                    </target>
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
+</jacoco-config>
+
+

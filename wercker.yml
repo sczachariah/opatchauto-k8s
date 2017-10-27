@@ -1,0 +1,40 @@
+# The container definition we want to use for developing our app
+
+build:
+  box:
+    id: quay.io/fmwplt/12213-domain-novol
+    username: $QUAY_IO_USERNAME
+    password: $QUAY_IO_PASSWORD
+    tag: latest
+  steps:
+   - internal/docker-push:
+      name: push the operator image to repo
+      username: $GCR_IO_USERNAME
+      password: $GCP_KEY_JSON
+      repository: gcr.io/fmwplt-gcp/12213-domain-novol
+      tag: $WERCKER_GIT_COMMIT
+      working-dir: /u01/oracle/user_projects/domains/base_domain
+      cmd: startWebLogic.sh
+      registry: https://gcr.io/v2
+
+
+deploy-to-kubernetes:
+    box: golang
+    steps:
+
+    - bash-template
+
+    - script:
+        name: prepare kubernetes files
+        code: |
+          mkdir $WERCKER_OUTPUT_DIR/kubernetes
+          mv k8s-*.yml $WERCKER_OUTPUT_DIR/kubernetes
+
+    - riceo/kubectl:
+        name: deploy to kubernetes
+        server: $KUBERNETES_MASTER
+        gcloud-key-json: $GCP_KEY_JSON
+        gke-cluster-name: $GKE_CLUSTER_NAME
+        gke-cluster-zone: $GKE_CLUSTER_ZONE
+        gke-cluster-project: $GKE_CLUSTER_PROJECT
+        command: apply -f $WERCKER_OUTPUT_DIR/kubernetes/

@@ -1,0 +1,4 @@
+envspec.version=${envspec.version}
+actfmwk.v2.version=${actfmwk.v2.version}
+actfmwk.api.v2.version=${actfmwk.api.v2.version}
+stdaction.v2.version=${stdaction.v2.version}

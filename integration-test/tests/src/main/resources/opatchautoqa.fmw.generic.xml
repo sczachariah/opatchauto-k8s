@@ -1,0 +1,31 @@
+<!--Run opatchauto-fmw-qa generic tests-->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="OPATCHAUTOQA_FMW_Generic_Test" verbose="1">
+
+    <test name="OPATCHAUTOQA_FMW_Generic">
+        <parameter name="applyPatchOperation" value="APPLY"/>
+        <parameter name="rollbackPatchOperation" value="ROLLBACK_CUMULATIVE"/>
+        <classes>
+            <class name="oracle.fmwplatformqa.opatchautoqa.fmw.integrationTests.OPatchAutoFMWGenericTest">
+                <methods>
+                    <include name="testInstall"/>
+                    <include name="testExecutable"/>
+                    <include name="testUsage_Negative"/>
+                    <include name="testApply_BinaryPatching"/>
+                    <!--<include name="testApply_System_BinaryPatching"/>-->
+                    <include name="testListInventory_Domain"/>
+                    <include name="testProductPatching"/>
+                    <include name="testProductPatching_No_Domain"/>
+                    <include name="testProductPatching_Improper_Domain"/>
+                    <include name="testFinalize"/>
+                    <include name="testHelp"/>
+                    <include name="testRollback_BinaryPatching_Cumulative"/>
+                    <include name="testApply_BinaryPatching_Cumulative"/>
+                    <include name="testIncorrect_Wallet_Password"/>
+                    <include name="testIncorrect_Wallet_Location"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

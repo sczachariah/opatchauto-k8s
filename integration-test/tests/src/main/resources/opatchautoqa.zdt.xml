@@ -1,0 +1,10 @@
+<!--Run all opatchauto-fmw-qa tests-->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="OPATCHAUTOQA_ZDT_Test" parallel="false">
+    <suite-files>
+        <suite-file path="opatchautoqa.zdt.wlszdt.xml"/>
+        <suite-file path="opatchautoqa.zdt.oop.xml"/>
+        <suite-file path="opatchautoqa.zdt.fmwzdt.xml"/>
+    </suite-files>
+</suite>

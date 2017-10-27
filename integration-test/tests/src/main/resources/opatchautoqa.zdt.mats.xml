@@ -1,0 +1,9 @@
+<!--Run all opatchautoqa zdt mats tests-->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="OPATCHAUTOQA_FMW-ZDT_MATS_Test" parallel="false">
+    <suite-files>
+        <suite-file path="opatchautoqa.zdt.wlszdt.mats.xml"/>
+        <suite-file path="opatchautoqa.zdt.fmwzdt.mats.xml"/>
+    </suite-files>
+</suite>

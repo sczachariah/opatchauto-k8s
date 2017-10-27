@@ -1,0 +1,18 @@
+<!--Run mats only-->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="OPATCHAUTOQA_ZDT_SSL_FMWZDT_Test" verbose="1">
+
+    <test name="OPATCHAUTOQA_ZDT_SSL_FMWZDT">
+        <classes>
+            <class name="oracle.fmwplatformqa.opatchautoqa.zdt.integrationTests.fmwzdt.OPatchAutoFMWZDTSSLTest">
+                <methods>
+                    <include name="testPatchUptimeNoneSSLDomainMultiNodeParallel"/>
+                    <include name="testPatchUptimeNoneSSLDomainMultiNode"/>
+                    <include name="testPatchUptimeNoneSSLDomainSingleNode"/>
+                    <include name="testPatchUptimeSSLHybridMultiDomain"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

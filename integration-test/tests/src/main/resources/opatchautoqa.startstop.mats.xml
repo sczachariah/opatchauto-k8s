@@ -1,0 +1,15 @@
+<!--Run mats only-->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="OPATCHAUTOQA_STARTSTOP_Test" verbose="1">
+
+    <test name="OPATCHAUTOQA_STARTSTOP">
+        <classes>
+            <class name="oracle.fmwplatformqa.opatchautoqa.zdt.integrationTests.ServerOperation">
+                <methods>
+                    <include name="startStopSetup"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

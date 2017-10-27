@@ -1,0 +1,36 @@
+<oneoff_inventory>
+    <opack_version version="13.2.0.0.1"/>
+    <reference_id number="99999700"/>
+    <unique_patch_id>99999700</unique_patch_id>
+    <cannot_autorollback>false</cannot_autorollback>
+    <date_of_patch year="2015" month="Mar" day="27" time="08:21:14 hrs" zone="PST8PDT"/>
+    <base_bugs>
+        <bug number="99999700" description="OPatchAuto Test Case 700 Test patch"/>
+    </base_bugs>
+    <required_components>
+        <component internal_name="oracle.fmwplatform.ocp" version="${weblogic.version}" opt_req="R"/>
+    </required_components>
+    <os_platforms>
+        <platform name="Generic Platform 2" id="2000"/>
+    </os_platforms>
+    <executables></executables>
+    <instance_shutdown>true</instance_shutdown>
+    <instance_shutdown_message></instance_shutdown_message>
+    <online_rac_installable>false</online_rac_installable>
+    <run_as_root>false</run_as_root>
+    <sql_migrate>false</sql_migrate>
+    <wls_prereq_oneoffs></wls_prereq_oneoffs>
+    <prereq_oneoffs></prereq_oneoffs>
+    <prereq_bugs></prereq_bugs>
+    <coreq_oneoffs></coreq_oneoffs>
+    <overlay_oneoffs></overlay_oneoffs>
+    <patch_type value="singleton"/>
+    <patch_language value="en"/>
+    <product_family value="fmw"/>
+    <patching_model value="one-off"/>
+    <auto>false</auto>
+    <translatable>false</translatable>
+    <applicable_product/>
+    <products></products>
+    <update_components></update_components>
+</oneoff_inventory>

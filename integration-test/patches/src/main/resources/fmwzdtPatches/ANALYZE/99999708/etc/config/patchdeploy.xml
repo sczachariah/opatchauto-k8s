@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<patch-deploy xmlns="http://xmlns.oracle.com/cie/patch/pdy">
+    <schemaVersion>1.0</schemaVersion>
+    <instance-shutdown>InstanceShutdown test</instance-shutdown>
+    <backport-readme-preinstalls>
+        <backport-readme-preinstall></backport-readme-preinstall>
+    </backport-readme-preinstalls>
+    <backport-readme-postinstalls>
+        <backport-readme-postinstall></backport-readme-postinstall>
+    </backport-readme-postinstalls>
+    <backport-patch-notes>
+        <backport-patch-note></backport-patch-note>
+    </backport-patch-notes>
+   <patch-uptime-option>FMW_ROLLING_ORACLE_HOME</patch-uptime-option>
+    <patch-upi>99999708</patch-upi>
+    <patch-id>99999708</patch-id>
+    <patch-configuration>
+        <action id="99999708-01">
+            <type>WLST_ACTION</type>
+            <name>opatchautozdtqa_customactions.sayHello</name>
+            <category>OFFLINE</category>
+            <inventory-entry-reference>
+                <inventory-type>RECORDED_ACTIONS</inventory-type>
+                <key>
+                    oracle.fmwplatformqa.opatchautofmwqa.integrationTests.OPatchAutoFMWZDTTest.analyze1
+                </key>
+            </inventory-entry-reference>
+            <order>10</order>
+            <failure-mode>STOP</failure-mode>
+            <parameter>
+                <name>WLST_IMPL_TEST_JAR_PATH</name>
+                <value>OPatchAutoIntegrationTestsCustomActions.jar</value>
+            </parameter>
+        </action>
+    </patch-configuration>
+</patch-deploy>

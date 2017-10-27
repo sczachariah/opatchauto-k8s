@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>oracle.fmwplatform.qa.opatchauto-qa.opatchauto-tests</groupId>
+    <artifactId>customActions</artifactId>
+    <version>12.2.1.3.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <description>Project for opatchauto fmw and zdt integration tests customActions</description>
+
+    <properties>
+        <envspec.version>2.0.0-170809.0707.56452</envspec.version>
+        <actfmwk.v2.version>2.0.0-170809.0707.56452</actfmwk.v2.version>
+        <actfmwk.api.v2.version>2.0.0-170809.0707.56452</actfmwk.api.v2.version>
+        <fmwcommon.versionrange>[2.0.0,3.0.0)</fmwcommon.versionrange>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>oracle.fmwplatform.common</groupId>
+            <artifactId>envspec</artifactId>
+            <version>${envspec.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>oracle.fmwplatform.common</groupId>
+            <artifactId>actionframework-v2</artifactId>
+            <version>${actfmwk.v2.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>oracle.fmwplatform.common</groupId>
+            <artifactId>actionframework-api-v2</artifactId>
+            <version>${actfmwk.api.v2.version}</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--Update the fmwplatform jar version to latest in artifactory-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <properties>
+                        <property>
+                            <name>envspec.version</name>
+                            <version>${fmwcommon.versionrange}</version>
+                        </property>
+                        <property>
+                            <name>actfmwk.v2.version</name>
+                            <version>${fmwcommon.versionrange}</version>
+                        </property>
+                        <property>
+                            <name>actfmwk.api.v2.version</name>
+                            <version>${fmwcommon.versionrange}</version>
+                        </property>
+                    </properties>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources/</directory>
+                <includes>
+                    <include>**</include>
+                </includes>
+            </resource>
+        </resources>
+        <finalName>OPatchAutoIntegrationTestsCustomActions.jar</finalName>
+    </build>
+    <repositories>
+        <repository>
+            <id>artifactory-slc-prod1</id>
+            <name>fmw-virtual</name>
+            <url>http://artifactory-slc-prod1.oraclecorp.com/artifactory/fmw-virtual</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>artifactory-slc-prod1</id>
+            <name>fmw-virtual</name>
+            <url>http://artifactory-slc-prod1.oraclecorp.com/artifactory/fmw-virtual</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

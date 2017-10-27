@@ -1,0 +1,18 @@
+<!--Run mats only-->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="OPATCHAUTOQA_ZDT_FMWZDT_MATS_Test" verbose="1">
+
+    <test name="OPATCHAUTOQA_ZDT_FMWZDT_MATS">
+        <classes>
+            <class name="oracle.fmwplatformqa.opatchautoqa.zdt.integrationTests.fmwzdt.OPatchAutoFMWZDTTest">
+                <methods>
+                    <include name="testPatchdeploy"/>
+                    <include name="testPatchUptimeOption"/>
+                    <include name="testAnalyze"/>
+                    <include name="testMNTUptimeRollingOH"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

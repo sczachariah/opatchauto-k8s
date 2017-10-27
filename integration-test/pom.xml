@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>oracle.fmwplatform.qa.opatchauto-qa.opatchauto-tests</groupId>
+    <artifactId>integration-test</artifactId>
+    <version>12.2.1.3.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <description>Project for opatchauto fmw and zdt integration-test</description>
+
+    <!--Build the child projects.-->
+    <modules>
+        <module>customActions</module>
+        <module>patches</module>
+        <module>tests</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.8</version>
+                <executions>
+                    <!--Always use overwrite option for files written into ../src/main/resources.-->
+                    <!--Copy all sub module jars to ../src/main/resources folder for building the jar.-->
+                    <execution>
+                        <id>copy-jar</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>oracle.fmwplatform.qa.opatchauto-qa.opatchauto-tests</groupId>
+                                    <artifactId>customActions</artifactId>
+                                    <version>${project.version}</version>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>../src/main/resources/</outputDirectory>
+                                    <destFileName>customActions.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>oracle.fmwplatform.qa.opatchauto-qa.opatchauto-tests</groupId>
+                                    <artifactId>patches</artifactId>
+                                    <version>${project.version}</version>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>../src/main/resources/</outputDirectory>
+                                    <destFileName>patches.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>oracle.fmwplatform.qa.opatchauto-qa.opatchauto-tests</groupId>
+                                    <artifactId>tests</artifactId>
+                                    <version>${project.version}</version>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>../src/main/resources/</outputDirectory>
+                                    <destFileName>tests.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--Copy parent pom and testExecutor to ../src/main/resources to be included in the jar.-->
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>compile</phase>
+                        <configuration>
+                            <tasks>
+                                <copy file="../pom.xml" tofile="../src/main/resources/pom.xml" overwrite="true"/>
+                                <copy file="tests/target/classes/qa.versions" tofile="../src/main/resources/qa.versions" overwrite="true"/>
+                                <copy file="../jacoco-config.xml" tofile="../src/main/resources/jacoco-config.xml" overwrite="true"/>
+                                <copy file="testExecutor/execute.pl" tofile="../src/main/resources/testExecutor/execute.pl" overwrite="true"/>
+                                <chmod file="../src/main/resources/testExecutor/execute.pl" perm="755"/>
+                                <copy file="testExecutor/env.properties" tofile="../src/main/resources/testExecutor/env.properties" overwrite="true"/>
+                                <chmod file="../src/main/resources/testExecutor/env.properties" perm="755"/>
+                                <copy file="testExecutor/README.txt" tofile="../src/main/resources/testExecutor/README.txt" overwrite="true"/>
+                                <copy file="testEnvScripts/createRolloutClusterDomain.py" tofile="../src/main/resources/testEnvScripts/createRolloutClusterDomain.py" overwrite="true"/>
+                                <chmod file="../src/main/resources/testEnvScripts/createRolloutClusterDomain.py" perm="755"/>
+                                <copy file="testEnvScripts/createRolloutClusterSSLDomain.py" tofile="../src/main/resources/testEnvScripts/createRolloutClusterSSLDomain.py" overwrite="true"/>
+                                <chmod file="../src/main/resources/testEnvScripts/createRolloutClusterSSLDomain.py" perm="755"/>
+                                <copy file="testEnvScripts/createRolloutClusterDomainMATS.py" tofile="../src/main/resources/testEnvScripts/createRolloutClusterDomainMATS.py" overwrite="true"/>
+                                <chmod file="../src/main/resources/testEnvScripts/createRolloutClusterDomainMATS.py" perm="755"/>
+                                <copy file="testEnvScripts/startServer.py" tofile="../src/main/resources/testEnvScripts/startServer.py" overwrite="true"/>
+                                <chmod file="../src/main/resources/testEnvScripts/startServer.py" perm="755"/>
+                                <copy file="testEnvScripts/startCluster.py" tofile="../src/main/resources/testEnvScripts/startCluster.py" overwrite="true"/>
+                                <chmod file="../src/main/resources/testEnvScripts/startCluster.py" perm="755"/>
+                                <copy file="testEnvScripts/startNM.py" tofile="../src/main/resources/testEnvScripts/startNM.py" overwrite="true"/>
+                                <chmod file="../src/main/resources/testEnvScripts/startNM.py" perm="755"/>
+                                <copy file="testEnvScripts/stopServer.py" tofile="../src/main/resources/testEnvScripts/stopServer.py" overwrite="true"/>
+                                <chmod file="../src/main/resources/testEnvScripts/stopServer.py" perm="755"/>
+                                <copy file="testEnvScripts/stopCluster.py" tofile="../src/main/resources/testEnvScripts/stopCluster.py" overwrite="true"/>
+                                <chmod file="../src/main/resources/testEnvScripts/stopCluster.py" perm="755"/>
+                                <copy file="testEnvScripts/updateNMProp.sh" tofile="../src/main/resources/testEnvScripts/updateNMProp.sh" overwrite="true"/>
+                                <chmod file="../src/main/resources/testEnvScripts/updateNMProp.sh" perm="755"/>
+                                <copy file="testEnvScripts/updateAdmin.py" tofile="../src/main/resources/updateAdmin.py" overwrite="true"/>
+                                <chmod file="../src/main/resources/testEnvScripts/updateAdmin.py" perm="755"/>
+                                <!--FMW and ZDT MATS-->
+                                <copy file="tests/src/main/resources/mats.xml"
+                                      tofile="../src/main/resources/suites/mats.xml" overwrite="true"/>
+                                <!--FMW Suites-->
+                                <copy file="tests/src/main/resources/opatchautoqa.fmw.mats.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.fmw.mats.xml" overwrite="true"/>
+                                <copy file="tests/src/main/resources/opatchautoqa.fmw.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.fmw.xml" overwrite="true"/>
+                                <copy file="tests/src/main/resources/opatchautoqa.fmw.customAction.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.fmw.customAction.xml" overwrite="true"/>
+                                <copy file="tests/src/main/resources/opatchautoqa.fmw.generic.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.fmw.generic.xml" overwrite="true"/>
+                                <copy file="tests/src/main/resources/opatchautoqa.fmw.standardAction.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.fmw.standardAction.xml" overwrite="true"/>
+                                <copy file="tests/src/main/resources/opatchautoqa.fmw.useCase.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.fmw.useCase.xml" overwrite="true"/>
+                                <!--Complete Suite-->
+                                <copy file="tests/src/main/resources/opatchautoqa.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.xml" overwrite="true"/>
+                                <!--ZDT Suites-->
+                                <copy file="tests/src/main/resources/opatchautoqa.zdt.mats.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.zdt.mats.xml" overwrite="true"/>
+                                <copy file="tests/src/main/resources/opatchautoqa.zdt.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.zdt.xml" overwrite="true"/>
+                                <copy file="tests/src/main/resources/opatchautoqa.zdt.fmwzdt.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.zdt.fmwzdt.xml" overwrite="true"/>
+                                <copy file="tests/src/main/resources/opatchautoqa.zdt.wlszdt.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.zdt.wlszdt.xml" overwrite="true"/>
+                                <copy file="tests/src/main/resources/opatchautoqa.zdt.oop.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.zdt.oop.xml" overwrite="true"/>
+                                <!--Extra Suites-->
+                                <copy file="tests/src/main/resources/opatchautoqa.zdt.fmwzdt.mats.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.zdt.fmwzdt.mats.xml" overwrite="true"/>
+                                <copy file="tests/src/main/resources/opatchautoqa.zdt.fmwzdt.lcm.mats.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.zdt.fmwzdt.lcm.mats.xml" overwrite="true"/>
+                                <copy file="tests/src/main/resources/opatchautoqa.zdt.wlszdt.mats.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.zdt.wlszdt.mats.xml" overwrite="true"/>
+                                <copy file="tests/src/main/resources/opatchautoqa.startstop.mats.xml"
+                                      tofile="../src/main/resources/suites/opatchautoqa.startstop.mats.xml" overwrite="true"/>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <!-- Configuration inherited -->
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>artifactory-slc-prod1</id>
+            <name>fmw-virtual</name>
+            <url>http://artifactory-slc-prod1.oraclecorp.com/artifactory/fmw-virtual</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>artifactory-slc-prod1</id>
+            <name>fmw-virtual</name>
+            <url>http://artifactory-slc-prod1.oraclecorp.com/artifactory/fmw-virtual</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>

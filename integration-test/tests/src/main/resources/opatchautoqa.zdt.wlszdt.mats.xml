@@ -1,0 +1,18 @@
+<!--Run mats only-->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="OPATCHAUTOQA_ZDT_WLSZDT_MATS_Test" verbose="1">
+
+    <test name="OPATCHAUTOQA_ZDT_WLSZDT_MATS">
+        <classes>
+            <class name="oracle.fmwplatformqa.opatchautoqa.zdt.integrationTests.wlszdt.OPatchAutoWLSZDTTest">
+                <methods>
+                    <include name="setupTestEnv"/>
+                    <include name="testCreateImageOOP"/>
+                    <include name="testRolloutTargetListOfServers"/>
+                    <include name="testRolloutTargetDomain"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

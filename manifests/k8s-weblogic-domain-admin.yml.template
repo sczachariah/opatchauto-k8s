@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: wlsadmin
+  labels:
+    app: wlsadmin
+#    commit: ${WERCKER_GIT_COMMIT}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wlsadmin
+#      commit: ${WERCKER_GIT_COMMIT}
+  template:
+    metadata:
+      labels:
+        app: wlsadmin
+#        commit: ${WERCKER_GIT_COMMIT}
+    spec:
+      imagePullSecrets:
+      - name: quay-secret
+      containers:
+      - name: wlsadmin
+        imagePullPolicy: IfNotPresent
+        image: quay.io/fmwplt/12213-domain-novol:latest
+        ports:
+        - containerPort: 7001
+        command: ["startWebLogic.sh"]
+        args:
+#          - --name=wlsadmin
+#          - --hostname=wlsadmin
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wlsadmin
+spec:
+  selector:
+    app: wlsadmin
+  ports:
+  - protocol: TCP
+    port: 7001
+    targetPort: 7001
+    nodePort: 32701
+  type: LoadBalancer
+---
+---
+---

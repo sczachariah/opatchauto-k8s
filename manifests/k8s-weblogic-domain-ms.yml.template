@@ -1,0 +1,67 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: ms1
+  labels:
+    app: ms1
+#    commit: ${WERCKER_GIT_COMMIT}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms1
+#      commit: ${WERCKER_GIT_COMMIT}
+  template:
+    metadata:
+      labels:
+        app: ms1
+#        commit: ${WERCKER_GIT_COMMIT}
+    spec:
+      imagePullSecrets:
+      - name: quay-secret
+      containers:
+      - name: ms1
+        imagePullPolicy: IfNotPresent
+        image: quay.io/fmwplt/12213-domain-novol:latest
+        ports:
+        - containerPort: 8001
+        command: ["createServer.sh"]
+        args:
+#          - --name=ms1
+#          - --link wlsadmin:wlsadmin
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: ms2
+  labels:
+    app: ms2
+#    commit: ${WERCKER_GIT_COMMIT}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms2
+#      commit: ${WERCKER_GIT_COMMIT}
+  template:
+    metadata:
+      labels:
+        app: ms2
+#        commit: ${WERCKER_GIT_COMMIT}
+    spec:
+      imagePullSecrets:
+      - name: quay-secret
+      containers:
+      - name: ms2
+        imagePullPolicy: IfNotPresent
+        image: quay.io/fmwplt/12213-domain-novol:latest
+        ports:
+        - containerPort: 8001
+        command: ["createServer.sh"]
+        args:
+#          - --name=ms2
+#          - --link wlsadmin:wlsadmin
+---
+---
+---

@@ -6,6 +6,7 @@ build:
     username: $QUAY_IO_USERNAME
     password: $QUAY_IO_PASSWORD
     tag: latest
+    cmd: /bin/sh
   steps:
 
    - script:

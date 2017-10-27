@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
     <groupId>oracle.fmwplatform.qa.opatchauto-qa</groupId>
-    <artifactId>opatchauto-tests</artifactId>
+    <artifactId>opatchauto-k8s</artifactId>
     <version>12.2.1.3.0-SNAPSHOT</version>
     <packaging>${project.packaging}</packaging>
     <description>Project for opatchauto fmw and zdt integration tests</description>

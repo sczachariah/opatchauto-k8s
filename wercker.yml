@@ -5,7 +5,7 @@ build:
     id: quay.io/fmwplt/12213-domain-novol
     username: $QUAY_IO_USERNAME
     password: $QUAY_IO_PASSWORD
-    tag: latest
+    tag: modified
     cmd: /bin/sh
   steps:
 

@@ -13,6 +13,7 @@ build:
       name: sample
       code: |
           ls -ltr
+          ls
 
    - internal/docker-push:
       name: push the operator image to repo

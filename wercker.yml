@@ -7,6 +7,12 @@ build:
     password: $QUAY_IO_PASSWORD
     tag: latest
   steps:
+
+  - script:
+      name: sample
+      code: |
+        ls -ltr
+
    - internal/docker-push:
       name: push the operator image to repo
       username: $GCR_IO_USERNAME

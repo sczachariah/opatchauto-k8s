@@ -8,10 +8,10 @@ build:
     tag: latest
   steps:
 
-  - script:
+   - script:
       name: sample
       code: |
-        ls -ltr
+          ls -ltr
 
    - internal/docker-push:
       name: push the operator image to repo

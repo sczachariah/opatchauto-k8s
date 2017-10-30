@@ -23,10 +23,10 @@ spec:
       containers:
       - name: wlsadmin
         imagePullPolicy: IfNotPresent
-        image: quay.io/fmwplt/12213-domain-novol:latest
+        image: quay.io/fmwplt/12213-domain-novol:modified
         ports:
         - containerPort: 7001
-        command: ["startWebLogic.sh"]
+#        command: ["startWebLogic.sh"]
         args:
 #          - --name=wlsadmin
 #          - --hostname=wlsadmin
